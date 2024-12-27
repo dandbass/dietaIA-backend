@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2020", // Defina a versão que o Node.js suporta
+    "module": "CommonJS", // Para que o Node.js possa entender os módulos
+    "strict": true, // Para garantir uma compilação mais segura
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist", // Pasta onde os arquivos compilados irão
+    "rootDir": "./", // Pasta onde o código fonte TypeScript está
+    "moduleResolution": "node"
+  },
+  "include": [
+    "./**/*.ts"
+  ], // Incluir todos os arquivos TS no diretório src
+  "exclude": [
+    "node_modules"
+  ] // Excluir node_modules
+}
