@@ -1,4 +1,4 @@
-import Fastify from "fastify"
+import Fastify, { FastifyRequest, FastifyReply } from "fastify"
 import cors from "@fastify/cors"
 import dotenv from "dotenv"
 import { routes } from "../routes/routes"
@@ -7,15 +7,16 @@ dotenv.config()
 
 const app = Fastify({ logger: true })
 
-// Define o handler para erros globais
 app.setErrorHandler((error, request, reply) => {
   reply.code(400).send({ message: error.message })
 })
 
-// Função serverless para o Vercel
-export default async function handler(req: any, res: any) {
-  await app.ready() // Aguarda o servidor estar pronto
-  app.server.emit("request", req, res) // Passa a requisição e resposta do Vercel para o Fastify
+export default async function handler(
+  request: FastifyRequest,
+  reply: FastifyReply
+) {
+  await app.ready()
+  app.server.emit("request", request, reply)
 }
 
 const start = async () => {
